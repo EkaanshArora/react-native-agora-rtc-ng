@@ -201,7 +201,6 @@ export default class MediaRecorder
       storagePath,
       containerFormat,
       streamType,
-      maxDurationMs,
       recorderInfoUpdateInterval,
     } = this.state;
     return (
@@ -244,7 +243,7 @@ export default class MediaRecorder
           })`}
         />
         <AgoraSlider
-          title={'recorderInfoUpdateInterval'}
+          title={`recorderInfoUpdateInterval ${recorderInfoUpdateInterval}`}
           minimumValue={1000}
           maximumValue={10000}
           step={1}

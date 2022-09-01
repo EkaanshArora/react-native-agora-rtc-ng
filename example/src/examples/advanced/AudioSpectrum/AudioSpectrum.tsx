@@ -167,8 +167,7 @@ export default class AudioSpectrum
   }
 
   protected renderConfiguration(): React.ReactNode {
-    const { intervalInMS, enableAudioSpectrumMonitor, audioSpectrumData } =
-      this.state;
+    const { enableAudioSpectrumMonitor, audioSpectrumData } = this.state;
     return (
       <>
         <AgoraTextInput

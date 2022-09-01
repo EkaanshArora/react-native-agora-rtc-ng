@@ -223,6 +223,15 @@ export default class ScreenShare
         contentHint,
       },
     });
+    // ⚠️ You should updateChannelMediaOptionsEx if you change captureAudio or captureVideo
+    const { channelId, uid2 } = this.state;
+    this.engine?.updateChannelMediaOptionsEx(
+      {
+        publishScreenCaptureAudio: true,
+        publishScreenCaptureVideo: true,
+      },
+      { channelId, localUid: uid2 }
+    );
   };
 
   /**
@@ -394,14 +403,8 @@ export default class ScreenShare
     const {
       uid2,
       captureAudio,
-      sampleRate,
-      channels,
       captureSignalVolume,
       captureVideo,
-      width,
-      height,
-      frameRate,
-      bitrate,
       contentHint,
       publishScreenCapture,
     } = this.state;
@@ -462,7 +465,7 @@ export default class ScreenShare
               </>
             ) : undefined}
             <AgoraSlider
-              title={'captureSignalVolume'}
+              title={`captureSignalVolume ${captureSignalVolume}`}
               minimumValue={0}
               maximumValue={100}
               step={1}

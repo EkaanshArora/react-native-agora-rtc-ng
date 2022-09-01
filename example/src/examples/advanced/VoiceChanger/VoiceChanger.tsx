@@ -252,7 +252,7 @@ export default class VoiceChanger
         />
         {limit1 !== undefined ? (
           <AgoraSlider
-            title={`param1`}
+            title={`param1 ${param1}`}
             minimumValue={limit1.min}
             maximumValue={limit1.max}
             step={1}
@@ -264,7 +264,7 @@ export default class VoiceChanger
         ) : undefined}
         {limit2 !== undefined ? (
           <AgoraSlider
-            title={`param2`}
+            title={`param2 ${param2}`}
             minimumValue={limit2.min}
             maximumValue={limit2.max}
             step={1}
@@ -304,7 +304,7 @@ export default class VoiceChanger
         />
         {limit1 !== undefined ? (
           <AgoraSlider
-            title={`param1`}
+            title={`param1 ${param1}`}
             minimumValue={limit1.min}
             maximumValue={limit1.max}
             step={1}
@@ -316,7 +316,7 @@ export default class VoiceChanger
         ) : undefined}
         {limit2 !== undefined ? (
           <AgoraSlider
-            title={`param2`}
+            title={`param2 ${param2}`}
             minimumValue={limit2.min}
             maximumValue={limit2.max}
             step={1}
@@ -351,7 +351,7 @@ export default class VoiceChanger
         />
         {limit !== undefined ? (
           <AgoraSlider
-            title={`value`}
+            title={`value ${value}`}
             minimumValue={limit.min}
             maximumValue={limit.max}
             step={1}
@@ -386,7 +386,7 @@ export default class VoiceChanger
           }}
         />
         <AgoraSlider
-          title={`bandGain`}
+          title={`bandGain ${bandGain}`}
           minimumValue={min}
           maximumValue={max}
           step={1}
@@ -410,7 +410,7 @@ export default class VoiceChanger
     return (
       <>
         <AgoraSlider
-          title={`pitch`}
+          title={`pitch ${pitch}`}
           minimumValue={min}
           maximumValue={max}
           step={0.1}

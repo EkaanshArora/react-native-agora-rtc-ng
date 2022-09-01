@@ -330,18 +330,12 @@ export default class RTMPStreaming
     const {
       url,
       startRtmpStreamWithTranscoding,
-      width,
-      height,
-      videoBitrate,
-      videoFramerate,
-      videoGop,
       videoCodecProfile,
       backgroundColor,
       videoCodecType,
       watermarkUrl,
       backgroundImageUrl,
       audioSampleRate,
-      audioBitrate,
       audioChannels,
       audioCodecProfile,
       startRtmpStream,
@@ -505,7 +499,7 @@ export default class RTMPStreaming
               })`}
             />
             <AgoraSlider
-              title={`audioChannels`}
+              title={`audioChannels ${audioChannels}`}
               minimumValue={1}
               maximumValue={5}
               step={1}

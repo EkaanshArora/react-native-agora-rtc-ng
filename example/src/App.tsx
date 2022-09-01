@@ -55,7 +55,7 @@ const App = () => {
           return false;
         }}
       >
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{ gestureEnabled: false }}>
           <Stack.Screen name={'APIExample'} component={Home} />
           {DATA.map((value) =>
             value.data.map(({ name, component }) =>
@@ -68,7 +68,7 @@ const App = () => {
         </Stack.Navigator>
         <TouchableOpacity
           onPress={() => {
-            setDebuggable(!isDebuggable);
+            setDebuggable(!isDebuggable());
           }}
         >
           <Text style={styles.version}>

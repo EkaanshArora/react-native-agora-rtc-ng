@@ -184,7 +184,6 @@ export default class LocalSpatialAudioEngine
     const {
       joinChannelSuccess,
       remoteUsers,
-      range,
       targetUid,
       position,
       axisForward,
@@ -221,6 +220,7 @@ export default class LocalSpatialAudioEngine
         <AgoraView style={styles.container}>
           {position.map((value, index) => (
             <AgoraTextInput
+              key={`position-${index}`}
               style={AgoraStyle.fullSize}
               onChangeText={(text) => {
                 if (isNaN(+text)) return;
@@ -241,6 +241,7 @@ export default class LocalSpatialAudioEngine
         <AgoraView style={styles.container}>
           {axisForward.map((value, index) => (
             <AgoraTextInput
+              key={`axisForward-${index}`}
               style={AgoraStyle.fullSize}
               onChangeText={(text) => {
                 if (isNaN(+text)) return;
@@ -261,6 +262,7 @@ export default class LocalSpatialAudioEngine
         <AgoraView style={styles.container}>
           {axisRight.map((value, index) => (
             <AgoraTextInput
+              key={`axisRight-${index}`}
               style={AgoraStyle.fullSize}
               onChangeText={(text) => {
                 if (isNaN(+text)) return;
@@ -281,6 +283,7 @@ export default class LocalSpatialAudioEngine
         <AgoraView style={styles.container}>
           {axisUp.map((value, index) => (
             <AgoraTextInput
+              key={`axisUp-${index}`}
               style={AgoraStyle.fullSize}
               onChangeText={(text) => {
                 if (isNaN(+text)) return;

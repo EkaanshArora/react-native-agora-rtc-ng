@@ -284,8 +284,7 @@ export default class MediaPlayer
   }
 
   protected renderConfiguration(): React.ReactNode {
-    const { url, open, position, duration, playoutVolume, loopCount } =
-      this.state;
+    const { url, open, position, duration, playoutVolume } = this.state;
     return (
       <>
         <AgoraTextInput
@@ -308,7 +307,7 @@ export default class MediaPlayer
         />
         <AgoraDivider />
         <AgoraSlider
-          title={`playoutVolume`}
+          title={`playoutVolume ${playoutVolume}`}
           minimumValue={0}
           maximumValue={400}
           step={1}

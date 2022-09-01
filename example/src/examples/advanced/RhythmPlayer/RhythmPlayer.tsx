@@ -219,7 +219,7 @@ export default class RhythmPlayer
           value={sound2}
         />
         <AgoraSlider
-          title={`beatsPerMeasure`}
+          title={`beatsPerMeasure ${beatsPerMeasure}`}
           minimumValue={1}
           maximumValue={9}
           step={1}
@@ -230,7 +230,7 @@ export default class RhythmPlayer
         />
         <AgoraDivider />
         <AgoraSlider
-          title={`beatsPerMinute`}
+          title={`beatsPerMinute ${beatsPerMinute}`}
           minimumValue={60}
           maximumValue={360}
           step={1}

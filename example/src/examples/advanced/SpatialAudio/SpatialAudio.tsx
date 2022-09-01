@@ -199,7 +199,7 @@ export default class SpatialAudio
         />
         <AgoraDivider />
         <AgoraSlider
-          title={`speaker_azimuth`}
+          title={`speaker_azimuth ${speaker_azimuth}`}
           minimumValue={0}
           maximumValue={360}
           step={1}
@@ -210,7 +210,7 @@ export default class SpatialAudio
         />
         <AgoraDivider />
         <AgoraSlider
-          title={`speaker_elevation`}
+          title={`speaker_elevation ${speaker_elevation}`}
           minimumValue={-90}
           maximumValue={90}
           step={1}
@@ -221,7 +221,7 @@ export default class SpatialAudio
         />
         <AgoraDivider />
         <AgoraSlider
-          title={`speaker_distance`}
+          title={`speaker_distance ${speaker_distance}`}
           minimumValue={1}
           maximumValue={50}
           step={1}
@@ -232,7 +232,7 @@ export default class SpatialAudio
         />
         <AgoraDivider />
         <AgoraSlider
-          title={`speaker_orientation`}
+          title={`speaker_orientation ${speaker_orientation}`}
           minimumValue={0}
           maximumValue={180}
           step={1}
