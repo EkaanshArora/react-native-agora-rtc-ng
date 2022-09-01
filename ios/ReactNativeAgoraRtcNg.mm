@@ -18,7 +18,7 @@ public:
     EventHandler(void *plugin) {
         plugin_ = (__bridge ReactNativeAgoraRtcNg *)plugin;
     }
-
+    
     void OnEvent(const char *event, const char *data, const void **buffer,
                  unsigned int *length, unsigned int buffer_count) override {
         @autoreleasepool {
@@ -27,7 +27,7 @@ public:
                 NSString *base64Buffer = [[[NSData alloc] initWithBytes:buffer[i] length:length[i]] base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
                 [array addObject:base64Buffer];
             }
-
+            
             if (plugin_.hasListeners) {
                 [plugin_ sendEventWithName:EVENT_NAME
                                       body:@{
@@ -39,11 +39,11 @@ public:
             }
         }
     }
-
+    
     void OnEvent(const char *event, const char *data, char *result, const void **buffer, unsigned int *length, unsigned int buffer_count) override {
         OnEvent(event, data, buffer, length, buffer_count);
     }
-
+    
 private:
     ReactNativeAgoraRtcNg *plugin_;
 };
@@ -118,7 +118,7 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(destroyIrisApiEngine) {
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(callApi: (nonnull NSDictionary *)arguments) {
     NSString *funcName = arguments[@"funcName"];
     NSString *params = arguments[@"params"];
-
+    
     NSMutableArray<NSData *> *bufferArray = [NSMutableArray new];
     if ([arguments[@"buffers"] isKindOfClass:NSArray.class]) {
         NSArray *array = arguments[@"buffers"];
@@ -127,15 +127,15 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(callApi: (nonnull NSDictionary *)argument
             [bufferArray addObject:data];
         }
     }
-
+    
     void *buffers[bufferArray.count];
     for (int i = 0; i < bufferArray.count; ++i) {
         buffers[i] = const_cast<void *>(bufferArray[i].bytes);
     }
-
+    
     char result[kBasicResultLength] = "";
     int error_code;
-
+    
     if ([funcName containsString:@"_register"]) {// 判断是注册observer相关的API
         // 创建对应的observer
         void *handle = self.irisApiEngine->CreateObserver(funcName.UTF8String, self.eventHandler, params.UTF8String, params.length);
@@ -154,9 +154,16 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(callApi: (nonnull NSDictionary *)argument
         self.irisApiEngine->CallIrisApi(funcName.UTF8String, params.UTF8String, params.length,
                                         buffers, bufferArray.count, result);
     }
-
+    
     if (error_code != 0) {
-        return [NSNull null];
+        NSError *error;
+        NSData *data = [NSJSONSerialization
+                        dataWithJSONObject:@{@"result": @(error_code)}
+                        options:NSJSONWritingPrettyPrinted
+                        error:&error];
+        return [[NSString alloc]
+                initWithData:data
+                encoding:NSUTF8StringEncoding];
     }
     return [NSString stringWithUTF8String:result];
 }

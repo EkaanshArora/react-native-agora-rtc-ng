@@ -15,6 +15,9 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +59,7 @@ public class ReactNativeAgoraRtcNgModule
   }
 
   @ReactMethod(isBlockingSynchronousMethod = true)
-  public String callApi(ReadableMap arguments) {
+  public String callApi(ReadableMap arguments) throws JSONException {
     String funcName = arguments.getString("funcName");
     String params = arguments.getString("params");
     List<byte[]> buffers = null;
@@ -73,7 +76,7 @@ public class ReactNativeAgoraRtcNgModule
       return irisApiEngine.callIrisApi(funcName, params, buffers);
     } catch (Exception e) {
       e.printStackTrace();
-      return null;
+      return new JSONObject().put("result", e.getMessage()).toString();
     }
   }
 
